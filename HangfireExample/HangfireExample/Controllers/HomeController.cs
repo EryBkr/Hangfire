@@ -1,4 +1,5 @@
-﻿using HangfireExample.Models;
+﻿using HangfireExample.BackgroundJobs;
+using HangfireExample.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
@@ -32,6 +33,15 @@ namespace HangfireExample.Controllers
         public IActionResult Error()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+        }
+
+        //Gerçek anlamda bir kullanıcı kaydı yapmayacağız.Job u denemek için oluşturduk
+        public IActionResult RegisterUser()
+        {
+            //Hemen çalışmaya başlayacaktır
+            FireAndForgetJob.EmailSendToUserJob("5","Test Mesajı");
+
+            return RedirectToAction("Index");
         }
     }
 }

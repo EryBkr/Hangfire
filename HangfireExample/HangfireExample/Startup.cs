@@ -1,4 +1,5 @@
 using Hangfire;
+using HangfireExample.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -34,6 +35,8 @@ namespace HangfireExample
             //MVC uygulamam ayný zamanda hangfire server gibi çalýþabilir
             services.AddHangfireServer();
 
+            //Email gönderme servisimi ekledim
+            services.AddScoped<IEmailSender, EmailSender>();
 
             services.AddControllersWithViews();
         }

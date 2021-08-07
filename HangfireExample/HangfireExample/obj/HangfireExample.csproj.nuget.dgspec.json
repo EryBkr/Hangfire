@@ -56,6 +56,10 @@
             "Hangfire.SqlServer": {
               "target": "Package",
               "version": "[1.7.24, )"
+            },
+            "SendGrid": {
+              "target": "Package",
+              "version": "[9.24.1, )"
             }
           },
           "imports": [
