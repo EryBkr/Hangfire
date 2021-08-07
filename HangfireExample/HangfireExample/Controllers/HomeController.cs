@@ -48,8 +48,6 @@ namespace HangfireExample.Controllers
 
         public IActionResult PictureSave()
         {
-            //Recuring job tetiklendi
-            RecuringJob.ReportingJob();
             return View();
         }
 
@@ -69,8 +67,12 @@ namespace HangfireExample.Controllers
                     await image.CopyToAsync(stream);
                 }
 
-                //Hangfire Job Execute
+                //Hangfire Delayed Job Execute
                 string jobID = BackgroundJobs.DelayedJob.AddWaterMarkJob(newFileName, "Eray Bakır");
+
+                //Continuations Job Execute
+                //Resim işlemi Delayed Job ile oluştuktan sonra ondan geri dönen Job id yi ContinuationsJob a veriyorum ve hemen ardından çalışmasını bekliyorum
+                BackgroundJobs.ContinuationsJob.WriteWatermarkInformation(jobID, newFileName);
             }
             return RedirectToAction("Index");
         }

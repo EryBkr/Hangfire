@@ -65,3 +65,4 @@ C:\Users\Blackerback\OneDrive\Masaüstü\NetCoreHangFire\HangfireExample\Hangfir
 C:\Users\Blackerback\OneDrive\Masaüstü\NetCoreHangFire\HangfireExample\HangfireExample\obj\Debug\net5.0\ref\HangfireExample.dll
 C:\Users\Blackerback\OneDrive\Masaüstü\NetCoreHangFire\HangfireExample\HangfireExample\obj\Debug\net5.0\HangfireExample.pdb
 C:\Users\Blackerback\OneDrive\Masaüstü\NetCoreHangFire\HangfireExample\HangfireExample\obj\Debug\net5.0\HangfireExample.genruntimeconfig.cache
+C:\Users\Blackerback\OneDrive\Masaüstü\NetCoreHangFire\HangfireExample\HangfireExample\obj\Debug\net5.0\HangfireExample.csproj.AssemblyReference.cache
