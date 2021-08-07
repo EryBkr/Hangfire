@@ -48,6 +48,8 @@ namespace HangfireExample.Controllers
 
         public IActionResult PictureSave()
         {
+            //Recuring job tetiklendi
+            RecuringJob.ReportingJob();
             return View();
         }
 

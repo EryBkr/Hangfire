@@ -19,6 +19,7 @@ namespace HangfireExample.BackgroundJobs
         }
 
         //Resme yazı ekleyeceğiz
+        //Job içerisinde kullanacağımız metotlar public olmalıdır
         public static void ApplyWatermark(string fileName, string watermarkText)
         {
             //Resim yolunu aldık
