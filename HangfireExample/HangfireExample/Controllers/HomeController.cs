@@ -1,10 +1,12 @@
 ﻿using HangfireExample.BackgroundJobs;
 using HangfireExample.Models;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -41,6 +43,33 @@ namespace HangfireExample.Controllers
             //Hemen çalışmaya başlayacaktır
             FireAndForgetJob.EmailSendToUserJob("5","Test Mesajı");
 
+            return RedirectToAction("Index");
+        }
+
+        public IActionResult PictureSave()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> PictureSave(IFormFile image)
+        {
+            string newFileName = String.Empty;
+
+            if (image!=null && image.Length>0)
+            {
+                newFileName = Guid.NewGuid().ToString() + Path.GetExtension(image.FileName);
+
+                var path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/images", newFileName);
+
+                using (var stream=new FileStream(path,FileMode.Create))
+                {
+                    await image.CopyToAsync(stream);
+                }
+
+                //Hangfire Job Execute
+                string jobID = BackgroundJobs.DelayedJob.AddWaterMarkJob(newFileName, "Eray Bakır");
+            }
             return RedirectToAction("Index");
         }
     }
